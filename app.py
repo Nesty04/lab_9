@@ -35,6 +35,13 @@ def delete(id):
     db.session.commit()
     return redirect(url_for('index'))
 
+@app.route('/clear')
+def clear():
+    Book.query.delete()
+    db.session.commit()
+    return redirect('/')
+
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
