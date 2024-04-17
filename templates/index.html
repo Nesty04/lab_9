@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Список прочитанных книг</title>
+  <style>
+    body {
+      background-color: #e0e0e0;
+    }
+    h1 {
+      text-align: center;
+    }
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      text-align: center;
+    }
+    i {
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <h1>Список прочитанных книг</h1>
+  <form action="" method="post">
+    <label for="author">Автор</label>
+    <input type="text" name="author">
+    <br>
+    <label for="name">Название</label>
+    <input type="text" name="name">
+    <br>
+    <input type="submit" value="Добавить">
+  </form>
+  <br>
+  <table>
+    <thead>
+      <tr>
+        <th>Автор</th>
+        <th>Название</th>
+        <th>Действия</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in books %}
+      <tr>
+        <td>{{ book.author }}</td>
+        <td><i>{{ book.name }}</i></td>
+        <td>
+          <a href="{{ url_for('delete', id=book.id) }}">Удалить</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
